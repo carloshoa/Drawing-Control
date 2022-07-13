@@ -15,7 +15,7 @@ router.get('/', async (req, res, next) => {
 
     console.log(req.user);
 
-    const projects = await projectsService.getAllByFilter(title, req.user.id);
+    const projects = await projectsService.getAllByFilter(title);
 
     res.json(projects);
   } catch (error) {
@@ -30,6 +30,20 @@ router.get('/:id', async (req, res, next) => {
     const project = await projectsService.getOne(id);
 
     res.json(project);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/create', async (req, res, next) => {
+  try {
+    const { body } = req;
+    console.log(body);
+
+    const newProject = await projectsService.createProject(body);
+    console.log(newProject);
+
+    res.json(newProject);
   } catch (error) {
     next(error);
   }
