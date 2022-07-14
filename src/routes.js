@@ -22,8 +22,6 @@ router.use((req, res, next) => {
 
   const token = bearerToken.slice(7);
 
-  console.log(token);
-
   try {
     const tokenPayload = jwt.verify(token, process.env.TOKEN_SECRET);
     req.user = { id: tokenPayload.id, role: tokenPayload.role };

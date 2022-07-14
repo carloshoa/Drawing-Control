@@ -13,6 +13,7 @@ app.use(express.json());
 
 app.use('/api', appRoutes);
 
+// eslint-disable-next-line no-unused-vars
 app.use((error, req, res, next) => {
   console.log(error);
   res.status(error.status || 500).json({ error: error.message });
