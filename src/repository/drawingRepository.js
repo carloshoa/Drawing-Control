@@ -14,6 +14,13 @@ class drawningRepository {
 
     return allDrawing;
   }
+
+  async updateDrawingFile(drawingId, fileId) {
+    const updatedDrawing = await this.drawingModel
+      .findByIdAndUpdate(drawingId, { $push: { revision: fileId } });
+
+    return updatedDrawing;
+  }
 }
 
 export default drawningRepository;

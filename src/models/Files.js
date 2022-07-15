@@ -1,8 +1,10 @@
-import { model, Schema } from 'mongoose';
+import mongoose from 'mongoose';
+
+const { model, Schema } = mongoose;
 
 const FileSchema = new Schema({
-  drawingNumber: [{
-    type: Schema.Types.ObjectId, ref: 'drawings', required: true, minlength: 3, maxlength: 150,
+  drawing: [{
+    type: Schema.Types.ObjectId, ref: 'drawing', required: true, minlength: 3, maxlength: 150,
   }],
   pages: {
     type: Number, required: true, min: 1, max: 100,

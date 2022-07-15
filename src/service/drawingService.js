@@ -47,6 +47,12 @@ class drawingService {
 
     return allDrawing;
   }
+
+  async updateDrawingFile(drawingId, fileId) {
+    const updatedDrawing = this.drawningRepository.updateDrawingFile(drawingId, fileId);
+
+    return updatedDrawing;
+  }
 }
 
 export default drawingService;
