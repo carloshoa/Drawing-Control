@@ -64,13 +64,11 @@ class AuthService {
     }
 
     const user = await this.authRepository.findUserByEmail(body.email);
-
     if (!user) {
       throw new InvalidCredetialsExceptions();
     }
 
     const isPasswordValid = bcrypt.compareSync(body.password, user.password);
-
     if (!isPasswordValid) {
       throw new InvalidCredetialsExceptions();
     }

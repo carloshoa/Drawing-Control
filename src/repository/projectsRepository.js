@@ -6,8 +6,8 @@ class ProjectsRepository {
     this.projectModel = model;
   }
 
-  async getAll(title = '') {
-    const projects = await this.projectModel.find({ name: { $regex: new RegExp(title, 'i') } });
+  async getAll(name = '') {
+    const projects = await this.projectModel.find({ name: { $regex: new RegExp(name, 'i') } });
 
     return projects;
   }

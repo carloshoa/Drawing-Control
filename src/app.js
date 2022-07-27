@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 import initDbConnection from './configs/database.js';
 import appRoutes from './routes.js';
@@ -10,6 +11,9 @@ dotenv.config();
 initDbConnection();
 
 app.use(express.json());
+app.use(cors({
+  origin: process.env.FRONT_END_URI,
+}));
 
 app.use('/api', appRoutes);
 

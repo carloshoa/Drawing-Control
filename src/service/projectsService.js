@@ -8,8 +8,8 @@ class ProjectsService {
     this.projectsRepository = repository;
   }
 
-  async getAllByFilter(title) {
-    const pŕojects = await this.projectsRepository.getAll(title);
+  async getAllByFilter(name) {
+    const pŕojects = await this.projectsRepository.getAll(name);
 
     return pŕojects;
   }

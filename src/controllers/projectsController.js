@@ -11,12 +11,11 @@ const router = Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const { title } = req.query;
+    const { name } = req.query;
 
     console.log(req.user);
 
-    const projects = await projectsService.getAllByFilter(title);
-
+    const projects = await projectsService.getAllByFilter(name);
     res.json(projects);
   } catch (error) {
     next(error);
