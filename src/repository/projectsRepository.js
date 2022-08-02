@@ -17,8 +17,8 @@ class ProjectsRepository {
       throw new InvalidIdException();
     }
 
-    const project = await this.projectModel.findById(id);
-
+    const project = await this.projectModel.findOne({ _id: id }).populate('drawings');
+    console.log(project);
     return project;
   }
 
@@ -26,6 +26,13 @@ class ProjectsRepository {
     const newProject = await this.projectModel.create(body);
 
     return newProject;
+  }
+
+  async updateProject(id, body) {
+    const updatedProject = await this.projectModel
+      .findByIdAndUpdate(id, { $push: { drawings: body._id } });
+
+    return updatedProject;
   }
 }
 

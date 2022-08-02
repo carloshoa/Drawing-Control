@@ -7,7 +7,7 @@ const projectSchema = new Schema({
     type: String, required: true, minlength: 3, maxlength: 150,
   },
   drawings: [{
-    type: Schema.Types.ObjectId, ref: 'drawings',
+    type: Schema.Types.ObjectId, ref: 'drawing',
   }],
 }, {
   timestamps: true,

@@ -10,7 +10,13 @@ class drawningRepository {
   }
 
   async getAllDrawing(number = '') {
-    const allDrawing = await this.drawingModel.find({ name: { $regex: new RegExp(number, 'i') } });
+    const allDrawing = await this.drawingModel.find({ drawingNumber: { $regex: new RegExp(number, 'i') } });
+
+    return allDrawing;
+  }
+
+  async getDrawingByNumber(number = '') {
+    const allDrawing = await this.drawingModel.find({ drawingNumber: { $regex: new RegExp(number, 'i') } });
 
     return allDrawing;
   }

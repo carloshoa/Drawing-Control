@@ -47,4 +47,19 @@ router.post('/create', async (req, res, next) => {
     next(error);
   }
 });
+
+router.post('/update/:id', async (req, res, next) => {
+  try {
+    const { body } = req;
+    console.log(body);
+
+    const updatedProject = await projectsService.updatedProject(body);
+
+    console.log(updatedProject);
+
+    res.json(updatedProject);
+  } catch (error) {
+    next(error);
+  }
+});
 export default router;

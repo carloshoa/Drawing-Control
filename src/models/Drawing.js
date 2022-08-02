@@ -15,6 +15,9 @@ const drawingSchema = new Schema({
   revision: [{
     type: Schema.Types.ObjectId, ref: 'file',
   }],
+  project: {
+    type: Schema.Types.ObjectId, ref: 'project',
+  },
 }, {
   timestamps: true,
 });
