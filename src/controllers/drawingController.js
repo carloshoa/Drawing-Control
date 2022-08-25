@@ -38,4 +38,30 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.post('/delete', async (req, res, next) => {
+  try {
+    const { id } = req.body;
+
+    console.log('esse é o id', req);
+    const deletedDrawing = await drawingService.deleteOne(id);
+
+    res.json(deletedDrawing);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/update', async (req, res, next) => {
+  try {
+    const id = req.body._id;
+    const { body } = req;
+    console.log('esse é o id', req.body);
+    const updatedDrawing = await drawingService.updateOne(id, body);
+
+    res.json(updatedDrawing);
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default router;

@@ -56,13 +56,36 @@ class drawingService {
   }
 
   async allDrawing() {
-    const allDrawing = this.drawningRepository.getAllDrawing();
+    const allDrawing = await this.drawningRepository.getAllDrawing();
 
     return allDrawing;
   }
 
   async updateDrawingFile(drawingId, fileId) {
-    const updatedDrawing = this.drawningRepository.updateDrawingFile(drawingId, fileId);
+    const updatedDrawing = await this.drawningRepository.updateDrawingFile(drawingId, fileId);
+
+    return updatedDrawing;
+  }
+
+  async deleteOne(id) {
+    const deletedDrawing = await this.drawningRepository.deleteOne(id);
+
+    return deletedDrawing;
+  }
+
+  async updateOne(id, body) {
+    const hasDrawingNumber = await this.drawningRepository.getAllDrawing(body.drawingNumber);
+
+    console.log('retorno da verificação', hasDrawingNumber);
+    const checkId = await this.drawningRepository.getDrawingById(id);
+    console.log('retorno do body', checkId);
+    const verifySameId = checkId._id === hasDrawingNumber[0]._id;
+    console.log('é valido', verifySameId);
+    if (hasDrawingNumber && !verifySameId) {
+      throw new DrawingAlreadyInUseException();
+    }
+
+    const updatedDrawing = await this.drawningRepository.updateOne(id, body);
 
     return updatedDrawing;
   }

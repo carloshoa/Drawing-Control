@@ -14,6 +14,7 @@ const router = Router();
 router.use('/auth', authController);
 
 router.use((req, res, next) => {
+  console.log('req chegando', req.body);
   const bearerToken = req.get('Authorization');
 
   if (!bearerToken) {
